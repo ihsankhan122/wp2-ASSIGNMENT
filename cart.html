@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+  body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #3a1111;
+      margin: 0;
+      overflow-x: hidden; 
+  }
+
+  .navbar {
+      background-color: #000000;
+  }
+
+  .navbar-brand {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #fff;
+  }
+
+  .navbar-toggler-icon {
+      background-color: #fff;
+  }
+
+  .navbar-nav .nav-link {
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s;
+  }
+
+  .navbar-nav .nav-link:hover {
+      color: #ccc;
+  }
+</style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="index.html">
+      <img src="booklogo.jpg" alt="Logo 1"> <span>Book Shop</span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="categories.html">Book Categories</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="cart.html">Cart</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="payment.html">Payment</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact Us</a>
+          </li>
+          <li class="nav-item">
+              <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+                  <button style="color: #f1f4f7;" class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchGoogle()">Search</button>
+              </form>
+          </li>
+      </ul>
+  </div>
+</nav>
+
+  <!-- Cart content -->
+  <div class="container mt-4">
+    <h2>Shopping Cart</h2>
+    <div id="cart-content">
+      <!-- Cart items will be displayed here using JavaScript -->
+    </div>
+  </div>
+
+  <!-- Total amount -->
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6 offset-md-6">
+        <div id="total-amount">
+          <!-- Total amount will be displayed here using JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Proceed to Payment button -->
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6 offset-md-6">
+        <button id="proceed-to-payment" class="btn btn-primary">Proceed to Payment</button>
+      </div>
+    </div>
+  </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    // Function to fetch and display cart items
+    function displayCartItems() {
+      const cartContent = document.getElementById('cart-content');
+      cartContent.innerHTML = '';
+
+      // Retrieve cart items from local storage
+      const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+      // Iterate through the cart items
+      cartItems.forEach((cartItem) => {
+        const cartItemCard = document.createElement('div');
+        cartItemCard.classList.add('card', 'mb-2');
+        cartItemCard.innerHTML = `
+          <div class="card-body">
+            <h5 class="card-title">${cartItem.title}</h5>
+            <p class="card-text">Author: ${cartItem.author}</p>
+            <p class="card-text">Price: $${cartItem.price.toFixed(2)}</p>
+            <p class="card-text">Quantity: <input type="number" min="1" value="${cartItem.quantity}" onchange="updateQuantity('${cartItem.title}', this.value)"></p>
+            <button class="btn btn-danger" onclick="removeItem('${cartItem.title}')">Remove</button>
+            <button class="btn btn-success" onclick="buyItem('${cartItem.title}', ${cartItem.price})">Buy</button>
+          </div>
+        `;
+        cartContent.appendChild(cartItemCard);
+      });
+
+      updateTotalAmount(cartItems);
+    }
+
+    // Function to handle buying an item and updating total amount
+    function buyItem(title, price) {
+      // Retrieve cart items from local storage
+      const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+      // Find the cart item by title
+      const cartItem = cartItems.find((item) => item.title === title);
+
+      if (cartItem) {
+        // Increase the quantity by 1 and update the total amount
+        cartItem.quantity += 1;
+
+        // Update the cart items in local storage
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+        displayCartItems();
+      }
+    }
+
+    // Function to update the quantity of a cart item
+    function updateQuantity(title, newQuantity) {
+      // Retrieve cart items from local storage
+      const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+      // Find the cart item by title
+      const cartItem = cartItems.find((item) => item.title === title);
+
+      if (cartItem) {
+        cartItem.quantity = parseInt(newQuantity, 10);
+      }
+
+      // Update the cart items in local storage
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+      displayCartItems();
+    }
+
+    // Function to remove an item from the cart
+    function removeItem(title) {
+      // Retrieve cart items from local storage
+      let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+      // Filter out the item to be removed
+      cartItems = cartItems.filter((item) => item.title !== title);
+
+      // Update the cart items in local storage
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+      displayCartItems();
+    }
+
+    // Function to calculate and display the total amount
+    function updateTotalAmount(cartItems) {
+      const totalAmount = document.getElementById('total-amount');
+      const totalPrice = cartItems.reduce((total, item) => {
+        return total + item.price * item.quantity;
+      }, 0);
+      totalAmount.innerHTML = `<p>Total Amount: $${totalPrice.toFixed(2)}</p>`;
+    }
+
+    // Function to proceed to the payment page
+    function proceedToPayment() {
+      // Redirect to the Payment Page
+      window.location.href = 'payment.html';
+    }
+
+    // Call the functions
+    displayCartItems();
+
+    // Add event listener for the "Proceed to Payment" button
+    const proceedButton = document.getElementById('proceed-to-payment');
+    proceedButton.addEventListener('click', proceedToPayment);
+  </script>
+</body>
+</html>

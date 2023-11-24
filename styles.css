@@ -1,0 +1,120 @@
+/* Global Styles */
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: blue; /* Change this line to set the background color to blue */
+}
+
+.navbar {
+    background-color: #007bff00;
+}
+
+.navbar-nav .nav-link {
+    color: #607a2c;
+}
+
+.navbar-nav .nav-link:hover {
+    color: rgb(41, 110, 41);
+}
+
+/* Rest of your CSS styles... */
+
+
+/* Index Page Styles */
+.slideshow-container {
+    max-width: 100%;
+    position: relative;
+    margin: auto;
+}
+
+.slideshow-container img {
+    width: 100%;
+    height: auto;
+}
+
+.slideshow-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #301616;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.card {
+    margin: 10px;
+}
+
+/* Categories Page Styles */
+.category-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.category-card {
+    border: 1px solid #251c1c;
+    padding: 10px;
+}
+
+.category-card img {
+    max-width: 100%;
+}
+
+/* Cart Page Styles */
+.cart-container {
+    margin: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.cart-item img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+/* Payment Page Styles */
+.payment-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.payment-table th,
+.payment-table td {
+    border: 1px solid #5f2121;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Contact Page Styles */
+.contact-info {
+    margin: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.contact-form button {
+    padding: 10px 20px;
+    background-color: #37977f;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #213126;
+}

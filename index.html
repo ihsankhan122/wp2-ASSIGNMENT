@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Online Library Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <style>
+        body {
+            animation: changeBackgroundColor 10s infinite alternate;
+
+        }
+    
+        @keyframes changeBackgroundColor {
+            0% {
+                background-color: #ff9999; /* Start color */
+            }
+            50% {
+                background-color: #99ff99; /* Middle color */
+            }
+            100% {
+                background-color: #9999ff; /* End color */
+            }
+        }
+    </style>
+    
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #5f2e2e;
+            margin: 0;
+            overflow-x: hidden; 
+        }
+
+        .navbar {
+            background-color: #520a10;
+        }
+
+        .navbar-brand {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #291d1d;
+        }
+
+        .navbar-toggler-icon {
+            background-color: #251818;
+        }
+
+        .navbar-nav .nav-link {
+            color: #201717;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #1b1111;
+        }
+
+        .slideshow-container {
+            max-width: 100%;
+            position: relative;
+            margin: auto;
+        }
+
+        .slideshow-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .slideshow-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #301e1e;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .card {
+            margin: 10px;
+            border: none;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .card-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+
+        .card-text {
+            font-size: 1em;
+            color: #555;
+        }
+
+        .card-price {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #00ffd5;
+            margin-top: 10px;
+        }
+    </style>
+    <style>
+        .navbar-nav .nav-link {
+            font-weight: bold; /* Set font weight to bold */
+        }
+    
+        .navbar-nav .nav-link:hover {
+            color: #1c7c54; /* Set red color on hover */
+        }
+    </style>
+
+    <style>
+        /* Your existing styles here */
+
+        .navbar-brand img {
+            background-color: #1c293600;
+            max-width: 50px; /* Set your desired max-width */
+            height: auto;
+            border-radius: 50%; /* Create a circular shape */
+            margin-right: 10px; /* Add margin for separation */
+            animation: rotateLogo 5s linear infinite; /* Adjust the duration as needed */
+        }
+
+        @keyframes rotateLogo {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <style>
+        .sl_container {
+            height: 60vh; /* Adjusted height */
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1d0c0c; /* White text color */
+            text-align: center;
+            transition: background-color 0.5s; /* Smooth background color transition */
+            animation: scaleInfinite 3s infinite alternate; /* Continuous scale animation */
+        }
+
+        .sl_container:hover {
+            background-color: #29b97d; /* Change background color on hover */
+        }
+
+        .sl_container img,
+        .slideshow-text {
+            opacity: 0;
+            text-align: center;
+            transform: scale(0.8);
+            animation: fadeIn 1s ease-in-out forwards, scaleIn 0.8s ease-in-out forwards; /* Animation for fade-in and scale */
+        }
+
+        .sl_container:hover img,
+        .sl_container:hover .slideshow-text {
+            transform: scale(1); /* Scale up on hover */
+        }
+
+        .sl_container img {
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.5s; /* Smooth scale transition */
+        
+        }
+
+        .slideshow-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            font-weight: bold;
+            transition: transform 0.5s; /* Smooth scale transition */
+        
+        }
+
+        .slideshow-text a {
+            color: rgb(27, 23, 23);
+            text-decoration: none;
+            border: 5px solid rgba(243, 104, 11, 0.5);
+            text-align: center;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .slideshow-text a:hover {
+            background-color: rgba(48, 6, 20, 0.87);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            to {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes scaleInfinite {
+            to {
+                transform: scale(1.1);
+            }
+        }
+</style> 
+
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #3d3535;
+        margin: 0;
+        overflow-x: hidden; 
+    }
+
+    .navbar {
+        background-color: #ff1010;
+    }
+
+    .navbar-brand {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #2c2323;
+    }
+
+    .navbar-toggler-icon {
+        background-color: #3f2424;
+    }
+
+    .navbar-nav .nav-link {
+        color: #140c0c;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: #1b1212;
+    }
+</style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html">
+        <img src="booklogo.jpg">  <span>Book Shop</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="categories.html">Book Categories</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="cart.html">Cart</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="payment.html">Payment</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact Us</a>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+                    <button style="color: #f1f4f7;" class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchGoogle()">Search</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+    
+</head>
+
+<body>
+    
+    <div class="slideshow-container">
+        <img class="slide" src="OIP.jpg" alt="Slide 1">
+        <img class="slide" src="R.jpg" alt="Slide 2">
+        <img class="slide" src="khan.jpg" alt="Slide 3">
+    </div>
+    <br><br>
+    <div class="container">
+        <div class="description-container">
+           
+     <h2>Explore Book - Your Premier Online Literary Sanctuary!</h2>
+     <p>Embark on a literary journey with BookVerse, where a vast realm of literature awaits your discovery. BookVerse is your ultimate destination for delving into and acquiring the latest, most enthralling books. Immerse yourself in a rich tapestry of genres, spanning from exhilarating mysteries to heartening romances, all meticulously curated to satisfy every reader's palate.</p>
+
+            <h3>Key Features:</h3>
+            <ul>
+                <li><strong>Extensive Collection:</strong> Browse through our extensive collection of books, carefully curated to offer a rich and varied reading experience.</li>
+                <li><strong>User-Friendly Navigation:</strong> Our user-friendly interface ensures easy navigation, allowing you to find your next favorite read effortlessly.</li>
+                <li><strong>Interactive Book Cards:</strong> Explore books with detailed information presented in interactive card formats. Hover over cards for a closer look, and click to delve into the details.</li>
+                <li><strong>Seamless Shopping Experience:</strong> Add your favorite books to the cart with a simple click, and enjoy a seamless checkout process for a hassle-free shopping experience.</li>
+                <li><strong>Stay Connected:</strong> Connect with fellow book enthusiasts through our community forum, share your thoughts on your latest reads, and discover hidden literary gems.</li>
+            </ul>
+        </div>
+        
+
+    <br><br>
+    <br>
+    <div class="sl_container">
+        <!-- Slideshow with animation -->
+        <img src="for.png" alt="Description of your image">
+        <div class="slideshow-text">
+            <a href="categories.html">
+                <span style="text-align: center;">
+                    Search Books
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <div class="join-websites">
+        <h3>Joining Other Websites:</h3>
+        <ul class="website-list">
+            <li><a href="https://www.goodreads.com/" target="_blank">Goodreads</a>: Connect with a global community of readers, discover new books, and share your reading progress and reviews.</li>
+            <li><a href="https://www.gutenberg.org/" target="_blank">Project Gutenberg</a>: Access a vast collection of free eBooks, including many classic literary works.</li>
+            <li><a href="https://www.librarything.com/" target="_blank">LibraryThing</a>: Catalog your personal library, connect with other readers, and discover new books based on your interests.</li>
+            <li><a href="https://www.audible.com/" target="_blank">Audible</a>: Explore a wide range of audiobooks for those who prefer to listen to their favorite stories.</li>
+        </ul>
+    </div>
+
+    
+    
+    
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Your existing HTML code -->
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.style.display = 'block';
+                } else {
+                    slide.style.display = 'none';
+                }
+            });
+        }
+
+        function showNextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function startSlideshow() {
+            showSlide(currentSlide);
+            setInterval(showNextSlide, 3000);
+        }
+
+        startSlideshow();
+
+        function searchGoogle() {
+            const searchInput = document.getElementById('searchInput').value;
+            const googleSearchURL = `https://www.google.com/search?q=${encodeURIComponent(searchInput)}`;
+            window.location.href = googleSearchURL;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('books.json')
+                .then(response => response.json())
+                .then(data => {
+                    const booksContainer = document.getElementById('books-container');
+
+                    data.forEach(book => {
+                        const card = document.createElement('div');
+                        card.classList.add('col-md-3', 'mb-4');
+                        card.innerHTML = `
+                            <div class="card">
+                                <img src="${book.image}" class="card-img-top" alt="${book.title}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${book.title}</h5>
+                                    <p class="card-text">${book.author}</p>
+                                    <p class="card-price">$${book.price}</p>
+                                    <button class="btn btn-primary" onclick="addToCart('${book.title}', ${book.price})">Add to Cart</button>
+                                    <button class="btn btn-secondary" onclick="viewCart('${book.title}')">View Cart</button>
+                                </div>
+                            </div>
+                        `;
+                        booksContainer.querySelector('.row').appendChild(card);
+                    });
+                })
+                .catch(error => console.error('Error loading books:', error));
+
+                function addToCart(title, price) {
+                    try {
+                        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                
+                        const existingBook = cart.find(item => item.title === title);
+                
+                        if (existingBook) {
+                            existingBook.quantity += 1;
+                        } else {
+                            cart.push({
+                                title: title,
+                                price: price,
+                                quantity: 1
+                            });
+                        }
+                
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        displayAddedToCartMessage(title);
+                    } catch (error) {
+                        console.error('Error adding item to cart:', error);
+                    }
+                }
+                
+
+            function viewCart(title) {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const selectedBook = cart.find(item => item.title === title);
+
+                if (selectedBook) {
+                    const quantity = prompt(`Enter quantity for ${title}:`, selectedBook.quantity);
+                    if (quantity !== null && !isNaN(quantity) && parseInt(quantity) >= 0) {
+                        selectedBook.quantity = parseInt(quantity);
+                        localStorage.setItem('cart', JSON.stringify(cart));
+
+                        // Redirect to the cart page
+                        window.location.href = 'cart.html';
+                    } else {
+                        alert('Invalid quantity. Please enter a valid number.');
+                    }
+                } else {
+                    alert('The selected book is not in the cart.');
+                }
+            }
+
+            function displayAddedToCartMessage(title) {
+                const message = `${title} has been added to your cart. You can view your cart for further details.`;
+                alert(message);
+            }
+        });
+    </script>
+    
+
+    
+</body>
+
+</html>
